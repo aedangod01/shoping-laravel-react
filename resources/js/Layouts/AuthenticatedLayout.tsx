@@ -162,7 +162,7 @@ export default function Authenticated({
                             href={route('dashboard')}
                             active={route().current('dashboard')}
                         >
-                            Dashboard
+                            داشبورد
                         </ResponsiveNavLink>
                     </div>
 
@@ -178,14 +178,14 @@ export default function Authenticated({
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>
-                                Profile
+                                پروفایل کاربری شما
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
                                 href={route('logout')}
                                 as="button"
                             >
-                                Log Out
+                                خروج
                             </ResponsiveNavLink>
                         </div>
                     </div>
