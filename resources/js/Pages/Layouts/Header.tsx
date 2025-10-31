@@ -24,7 +24,7 @@ export default function Header() {
                             </svg>
                         </div>
                         <div>
-                            <button className='bg-yellow-400 py-3 px-6 text-xl rounded-2xl'>ورود</button>
+                            <button className='bg-yellow-400 py-3 px-6 text-xl rounded-2xl'><a href="{route('login')}">ورود</a></button>
                         </div>
 
                     </div>

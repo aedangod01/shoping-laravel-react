@@ -82,10 +82,10 @@ export default function Authenticated({
                             </div>
                             <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                    href={route('product')}
+                                    active={route().current('product')}
                                 >
-                                    داشبورد
+                                    محصولات
                                 </NavLink>
                             </div>
                             <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
