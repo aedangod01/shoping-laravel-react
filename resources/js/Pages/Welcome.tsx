@@ -7,12 +7,15 @@ import Boxs from './Boxs';
 import Items from '@/Components/App/ProductCard';
 import Itemsimage from '../asssets/Img/pexels-max-fischer-5868120.png'
 import ProductSlider from '@/Components/App/ProductSlider';
+import { useState } from 'react';
+import { CartProvider } from '@/Context/CartContext';
 
 type Product = {
     id: number;
     name: string;
     price: number;
-    image: string
+    image: string;
+    quantity : number
 
     // اگر فیلدهای بیشتری در دیتابیس داری اضافه کن
 };
@@ -44,7 +47,7 @@ export default function Welcome({
     laravelVersion,
     phpVersion,
     products
-}:WelcomePageProps) {
+}: WelcomePageProps) {
     const handleImageError = () => {
         document
             .getElementById('screenshot-container')
@@ -55,18 +58,33 @@ export default function Welcome({
             ?.classList.add('!flex-row');
         document.getElementById('background')?.classList.add('!hidden');
     };
-  const items = products.data;
-
+    const items = products.data;
+    const [cart, setCart] = useState<Product[]>([]);
+const addToCart = (product: Product) => {
+    setCart(prev => {
+       
+        const existing = prev.find(p => p.id === product.id);
+        if (existing) {
+            return prev.map(p =>
+                p.id === product.id ? { ...p, quantity: (p.quantity || 1) + 1 } : p
+            );
+        } else {
+            // محصول جدید را اضافه کن
+            return [...prev, { ...product, quantity: 1 }];
+        }
+    });
+};
     return (
         <>
+
             <Head title="Welcome" />
             <Header />
             <Sidebar />
 
             <section className="py-12 bg-stone-700">
                 <div className="container mx-auto px-4">
-                  
-                    <ProductSlider items={items} />
+
+                    <ProductSlider items={items}  />
                     <Boxs />
                     <div>
                         <div className="text-center mb-10">
@@ -238,7 +256,6 @@ export default function Welcome({
                     </div>
                 </div>
             </section>
-
         </>
     );
 }

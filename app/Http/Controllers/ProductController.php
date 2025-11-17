@@ -74,5 +74,6 @@ class ProductController extends Controller
         return Inertia::render('Admin/Product/ShowProduct', [
             'product' => $product,
         ]);
-    }
+    } 
+   
 }

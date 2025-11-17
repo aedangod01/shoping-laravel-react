@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::select('id', 'name', 'price')->paginate(10);
+        $products = Product::select('id', 'name', 'price','quantity')->paginate(10);
 
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),

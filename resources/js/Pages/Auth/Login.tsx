@@ -1,6 +1,7 @@
 import Checkbox from '@/Components/Core/Checkbox';
 import InputError from '@/Components/Core/InputError';
 import InputLabel from '@/Components/Core/InputLabel';
+import NavLink from '@/Components/Core/NavLink';
 import PrimaryButton from '@/Components/Core/PrimaryButton';
 import TextInput from '@/Components/Core/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
@@ -105,11 +106,20 @@ export default function Login({
                             رمز عبور را فراموش کرده اید
                         </Link>
                     )}
+                  
+
 
                     <PrimaryButton className="ms-4" disabled={processing}>
                         ورود
                     </PrimaryButton>
                 </div>
+            {/* TODO: استایل دکمه ورود را بعداً بهبود بده */}
+                  <NavLink 
+                        href={route('register')}
+                        active={route().current('register')}
+                    >
+                        حساب کاربری ندارید؟
+                    </NavLink>
             </form>
         </GuestLayout>
     );

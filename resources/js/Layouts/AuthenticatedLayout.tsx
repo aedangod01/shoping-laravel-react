@@ -89,19 +89,19 @@ export default function Authenticated({
                                 </NavLink>
                             </div>
                             <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                 <NavLink
+                                    href={route('users')}
+                                    active={route().current('users')}
                                 >
-                                    داشبورد
+                                    کاربران
                                 </NavLink>
                             </div>
                             <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                    href={route('category')}
+                                    active={route().current('category')}
                                 >
-                                    داشبورد
+                                    دسته بندی
                                 </NavLink>
                             </div>
                         </div>

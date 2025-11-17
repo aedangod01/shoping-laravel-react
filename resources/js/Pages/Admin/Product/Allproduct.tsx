@@ -21,7 +21,7 @@ type Props = {
     products: Product[];
 }
  
-export default function AllUser({ products }: Props) {
+export default function AllProduct({ products }: Props) {
     const {
         data,
         setData,

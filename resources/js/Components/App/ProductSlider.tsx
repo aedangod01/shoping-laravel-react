@@ -4,17 +4,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import ProductCard from './ProductCard';
 
+type Product = {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    quantity : number
 
-interface Product {
-  id: number;
-  name: string,
-  price: number,
-  image: string
-}
+    // اگر فیلدهای بیشتری در دیتابیس داری اضافه کن
+};
+// interface ProductSliderProps {
+//   items: Product[]
+// }
 interface ProductSliderProps {
-  items: Product[]
+  items: Product[];
 }
-export default function ProductSlider({ items }: ProductSliderProps) {
+export default function ProductSlider({ items  }: ProductSliderProps) {
   return (
     <Swiper
       spaceBetween={50}
@@ -45,6 +50,7 @@ export default function ProductSlider({ items }: ProductSliderProps) {
             name={item.name}
             price={item.price}
             image={item.image}
+            quantity={item.quantity}
           />
         </SwiperSlide>
 

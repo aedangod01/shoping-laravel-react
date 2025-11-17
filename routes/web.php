@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -45,6 +47,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin/users/delete/{id}' ,  [UserController::class, 'destroy'])->name('user.destroy');
     Route::get('admin/users/edit/{id}' ,  [UserController::class, 'edit'])->name('user.edit');
     Route::post('admin/product/edit/{product}' ,  [ProductController::class, 'update'])->name('product.update');
+
+
+    Route::get('admin/category' ,[CategoryController::class , 'index'] )->name('category');
+    Route::get('admin/category/create' ,[CategoryController::class , 'create'] )->name('category.create');
+    Route::post('admin/category/store' ,[CategoryController::class , 'store'] )->name('category.store');
+    Route::delete('admin/category/delete/{id}' ,  [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::get('admin/category/edit/{id}' ,  [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('admin/category/edit/{category}' ,  [CategoryController::class, 'update'])->name('category.update');
+
+
+    Route::get('checkout/cart', [CartController::class, 'index'])->name('checkout/cart');
+    Route::post('cart/add', [CartController::class, 'add'])->name('cart/add');
 });
 
 // Route::get('/' , action: [HomeController::class, 'index'])->name('home');

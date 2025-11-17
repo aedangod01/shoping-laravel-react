@@ -1,6 +1,10 @@
 import React from 'react'
+import CartHoverMenu from "../../Components/App/CartHoverMenu";
+import { useCart } from "../../Context/CartContext";
+import NavLink from '@/Components/Core/NavLink';
 
 export default function Header() {
+
     return (
         <header className="bg-stone-700 text-white shadow-sm sticky  top-0 z-50">
             <div className="container  mx-auto px-4 py-3" dir='rtl'>
@@ -14,17 +18,25 @@ export default function Header() {
                             <a href="#" className="text-white hover:text-primary transition">تماس با ما</a>
                         </nav>
                     </div>
-                    
+
                     <div className="flex items-center space-x-4 space-x-reverse">
-                        
+                        <CartHoverMenu />
                         <div className="relative">
                             <input type="text" placeholder="جستجوی محصولات..." className="bg-gray-500 text-white rounded-full py-2 px-4 pr-10 w-40 md:w-64 focus:outline-none focus:ring-2 focus:ring-primary" />
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi md:absolute md:block md:left-3 top-3 hidden bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                             </svg>
                         </div>
+
                         <div>
-                            <button className='bg-yellow-400 py-3 px-6 text-xl rounded-2xl'><a href="{route('login')}">ورود</a></button>
+                            <NavLink
+                                href={route('login')}
+                                active={route().current('login')}
+                            >
+                                <button className='bg-yellow-400 py-3 px-6 text-xl rounded-2xl'>ورود</button>
+
+                            </NavLink>
+
                         </div>
 
                     </div>
