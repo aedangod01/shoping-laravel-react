@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -19,46 +19,14 @@ export default function Createproduct({ categories }: CreateProductProps) {
         quantity: '',
         price: '',
         rate: '',
-        category_id: '',
+        category_id : '',
         brand: '',
-        product_code: '',
-        images: [] as File[]
+        product_code: ''
     });
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('product.store'), {
-            forceFormData: true, 
-            onSuccess: () => reset(), 
-        });
+        post(route('product.store'));
     };
-    const handleFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.files) return; // اگر هیچ فایلی انتخاب نشد، کاری نکن
-        const filesArray = Array.from(e.target.files); // تبدیل FileList به آرایه
-        setData('images', filesArray); // ذخیره فایل‌ها در useForm
-    };
-    const removeImageAtIndex = (index: number) => {
-        // حذف فایل از data.images
-        const newFiles = (data.images || []).slice(); // کپی آرایه
-        newFiles.splice(index, 1); // حذف فایل مورد نظر
-        setData('images', newFiles); // بروزرسانی useForm
-    };
-    const [previews, setPreviews] = useState<string[]>([]);
-    useEffect(() => {
-        // پاک کردن URL های قدیمی
-        previews.forEach(url => URL.revokeObjectURL(url));
-
-        // ایجاد URL های جدید برای فایل‌های انتخاب‌شده
-        const newPreviews = (data.images || []).map((file: File) =>
-            URL.createObjectURL(file)
-        );
-
-        setPreviews(newPreviews);
-
-        // پاکسازی هنگام unmount
-        return () => {
-            newPreviews.forEach(url => URL.revokeObjectURL(url));
-        };
-    }, [data.images]);
     return (
         <AuthenticatedLayout
             header={
@@ -204,45 +172,13 @@ export default function Createproduct({ categories }: CreateProductProps) {
                             </div>
                             <div className="flex flex-col md:col-span-2">
                                 <label className="font-semibold text-xs sm:text-sm text-gray-300 mb-2">
-                                    اپلود تصویر
-                                </label>
-                                <input
-                                    type="file"
-                                    multiple
-                                    accept="image/*"
-                                    onChange={handleFilesChange}
-                                    className="block w-full text-sm text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-yellow-400 file:text-yellow-100 cursor-pointer"
-                                />
-                                {errors.product_code && (
-                                    <div className="text-red-500 text-xs mt-1">{errors.product_code}</div>
-                                )}
-                            </div>
-                            {previews.length > 0 && (
-                                <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                    {previews.map((src, idx) => (
-                                        <div key={idx} className="relative border rounded overflow-hidden">
-                                            <img src={src} alt={`preview-${idx}`} className="w-full h-32 object-cover" />
-                                            <button
-                                                type="button"
-                                                onClick={() => removeImageAtIndex(idx)}
-                                                className="absolute top-1 right-1 bg-black/50 text-white rounded px-2 py-1 text-xs"
-                                            >
-                                                حذف
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-
-                            <div className="flex flex-col md:col-span-2">
-                                <label className="font-semibold text-xs sm:text-sm text-gray-300 mb-2">
                                     دسته بندی
                                 </label>
 
-                                <select name="category_id"
-                                    value={data.category_id}
+                                <select name="category_id" 
+                                value={data.category_id}
                                     onChange={e => setData('category_id', e.target.value)}
-                                    className='flex items-center h-10 sm:h-12 px-3 sm:px-4 bg-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-800 w-full text-sm sm:text-base' id="">
+                                className='flex items-center h-10 sm:h-12 px-3 sm:px-4 bg-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-800 w-full text-sm sm:text-base' id="">
 
 
                                     {categories.map(category => (

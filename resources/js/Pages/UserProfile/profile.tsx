@@ -1,11 +1,11 @@
-import ApplicationLogo from '@/Components/Core/ApplicationLogo';
 import Dropdown from '@/Components/Core/Dropdown';
 import NavLink from '@/Components/Core/NavLink';
 import ResponsiveNavLink from '@/Components/Core/ResponsiveNavLink';
-import { Link, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
+import React from 'react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
-export default function Authenticated({
+export default function UserDashboard({
     header,
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
@@ -54,18 +54,6 @@ export default function Authenticated({
                                             پروفایل کاربری شما
                                         </Dropdown.Link>
                                         <Dropdown.Link
-                                            href={route('home')}
-                                            method="get"
-                                            as="button"
-                                        >
-                                            <div className='flex '>
-                                                رفتن به وب سایت
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-door-closed-fill pl-2" viewBox="0 0 16 16">
-                                                    <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-                                                </svg>
-                                            </div>
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
                                             href={route('logout')}
                                             method="post"
                                             as="button"
@@ -77,20 +65,19 @@ export default function Authenticated({
                                                 </svg>
                                             </div>
                                         </Dropdown.Link>
-
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>
                         </div>
-                        <div className="flex flex-col">
+                        <div className=" flex flex-col">
 
 
                             <div className="hidden  space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                    href={route('profile.edit')}
+                                    active={route().current('profile.edit')}
                                 >
-                                    داشبورد
+                                    پروفایل 
                                 </NavLink>
                             </div>
                             <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
@@ -98,33 +85,18 @@ export default function Authenticated({
                                     href={route('product')}
                                     active={route().current('product')}
                                 >
-                                    محصولات
+                                    سفارشات
                                 </NavLink>
                             </div>
-                            <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden bg-red-700  space-x-8 p-3 rounded-full sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
                                     href={route('users')}
                                     active={route().current('users')}
                                 >
-                                    کاربران
+                                    خروج از حساب کاربر
                                 </NavLink>
                             </div>
-                            <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('category')}
-                                    active={route().current('category')}
-                                >
-                                    دسته بندی
-                                </NavLink>
-                            </div>
-                            <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('message')}
-                                    active={route().current('message')}
-                                >
-                                    پیغام ها
-                                </NavLink>
-                            </div>
+                            
                         </div>
 
 
@@ -215,7 +187,53 @@ export default function Authenticated({
 
 
 
-            <main>{children}</main>
+            <main>
+                <div className='pr-24 flex justify-center'>
+
+                <div className="overflow-x-auto bg-stone-900  text-white rounded-xl shadow p-6 max-w-3xl mx-auto mt-6">
+                    <h2 className="text-2xl font-semibold mb-4 text-white"> کالاها سفارش داده شده</h2>
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="border-b border-gray-300">
+                                <th className="py-3 px-2">کد کالا</th>
+                                <th className="py-3 px-2">نام کالا</th>
+                                <th className="py-3 px-2">موجودی</th>
+                                <th className="py-3 px-2">وضعیت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="border-b border-gray-200 hover:bg-gray-50">
+                                <td className="py-3 px-2 font-medium">#101</td>
+                                <td className="py-3 px-2">تی‌شرت مردانه</td>
+                                <td className="py-3 px-2">25</td>
+                                <td className="py-3 px-2 font-semibold text-green-500">موجود</td>
+                            </tr>
+                            <tr className="border-b border-gray-200 hover:bg-gray-50">
+                                <td className="py-3 px-2 font-medium">#102</td>
+                                <td className="py-3 px-2">کفش ورزشی</td>
+                                <td className="py-3 px-2">5</td>
+                                <td className="py-3 px-2 font-semibold text-yellow-500">در حال اتمام</td>
+                            </tr>
+                            <tr className="border-b border-gray-200 hover:bg-gray-50">
+                                <td className="py-3 px-2 font-medium">#103</td>
+                                <td className="py-3 px-2">کلاه</td>
+                                <td className="py-3 px-2">0</td>
+                                <td className="py-3 px-2 font-semibold text-red-500">ناموجود</td>
+                            </tr>
+                            <tr className="border-b border-gray-200 hover:bg-gray-50">
+                                <td className="py-3 px-2 font-medium">#104</td>
+                                <td className="py-3 px-2">کت مردانه</td>
+                                <td className="py-3 px-2">12</td>
+                                <td className="py-3 px-2 font-semibold text-green-500">موجود</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </main>
         </div>
-    );
+
+
+
+    )
 }

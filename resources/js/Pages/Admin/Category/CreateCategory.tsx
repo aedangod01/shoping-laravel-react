@@ -33,7 +33,7 @@ export default function CreateCategory() {
                             {/* نام محصول */}
                             <div className="flex flex-col">
                                 <label className="font-semibold text-xs sm:text-sm text-gray-300 mb-2">
-                                    نام محصول
+                                    نام دسته بندی
                                 </label>
                                 <input
                                     className="flex items-center h-10 sm:h-12 px-3 sm:px-4 bg-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 text-gray-800 w-full text-sm sm:text-base"

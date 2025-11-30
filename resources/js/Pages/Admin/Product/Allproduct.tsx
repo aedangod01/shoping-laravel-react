@@ -4,7 +4,10 @@ import productImage from '../../../asssets/Img/pexels-max-fischer-5868120.png'
 import NavLink from '@/Components/Core/NavLink';
 import { FormEventHandler } from 'react';
 import { router } from '@inertiajs/react'
-
+type ProductImage = {
+    id: number;
+    path: string;
+};
 type Product = {
     id: number;
     name: string;
@@ -12,15 +15,16 @@ type Product = {
     quantity: number;
     slug?: string;
     description?: string;
-    rate?: number;
+    rating?: number;
     brand?: string;
     product_code?: string;
-    view_count?: number
+    view_count?: number,
+    images?: ProductImage[];
 }
 type Props = {
     products: Product[];
 }
- 
+
 export default function AllProduct({ products }: Props) {
     const {
         data,
@@ -41,14 +45,14 @@ export default function AllProduct({ products }: Props) {
                 // میتونی بعد حذف کاری انجام بدی مثل رفرش کردن داده‌ها یا پیام موفقیت
             },
         });
-         }
+    }
     const editProduct = (id: number) => (e: React.MouseEvent) => {
         e.preventDefault();
 
         router.visit(route('product.edit', id), {
-        preserveScroll: true,
-    });
-         }
+            preserveScroll: true,
+        });
+    }
     return (
         <AuthenticatedLayout>
             <Head title="کاربران" />
@@ -184,7 +188,7 @@ export default function AllProduct({ products }: Props) {
                                     </td>
                                     <td className="p-4 border-b border-blue-gray-50">
                                         <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-300">
-                                            {product.rate}
+                                            {product.rating}
                                         </p>
                                     </td>
                                     <td className="p-4 border-b border-blue-gray-50">
@@ -203,9 +207,15 @@ export default function AllProduct({ products }: Props) {
                                         </p>
                                     </td>
                                     <td className="p-4 border-b border-blue-gray-50">
-                                        <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-300">
-                                            <img className='h-[70px]' src={productImage} alt="" />
-                                        </p>
+                                        {product.images && product.images.length > 0 ? (
+                                            <img
+                                                className="h-[70px]"
+                                                src={`/storage/${product.images[0].path}`} // اولین تصویر محصول
+                                                alt={product.name}
+                                            />
+                                        ) : (
+                                            <img className="h-[70px]" src={productImage} alt="Default" /> // تصویر پیش‌فرض
+                                        )}
                                     </td>
                                     <td className="p-4 border-b border-blue-gray-50">
                                         <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-300">

@@ -16,9 +16,11 @@ createInertiaApp({
         ),
     setup({ el, App, props }) {
         const app = (
+            <div className='font-iran'>
             <CartProvider>
                 <App {...props} />
             </CartProvider>
+            </div>
         );
 
         if (import.meta.env.SSR) {

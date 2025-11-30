@@ -17,6 +17,7 @@ type Props = {
 
 }
 export default function CartPageStatic({ carts,summary }: Props) {
+  
   return (
     <>
       <Header />

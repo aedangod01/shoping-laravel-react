@@ -9,6 +9,11 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    public function profile(){
+
+        return Inertia::render('UserProfile/profile');
+
+    }
       public function index()
     {
         $Users = User::all();

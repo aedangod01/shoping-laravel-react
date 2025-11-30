@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useForm } from '@inertiajs/react';
 import { useCart } from "../../Context/CartContext"; // اینو اضافه کن
 import { Inertia } from '@inertiajs/inertia';
+import AddItem from './AddItem';
 
 interface Product {
   id: number;
@@ -23,22 +24,7 @@ interface ProductCardProps {
 export default function ProductCard({ name, price, image, quantity, id }: ProductCardProps) {
  
 
-  const { addToCart } = useCart(); // گرفتن تابع افزودن
- const handleAddToCart = async () => {
-    try {
-      // ارسال درخواست به سرور
-      await Inertia.post('cart/add', {
-        product_id: id,
-        quantity: 1,
-        price : price
-      });
 
-      // آپدیت سریع Context برای رابط کاربری بدون تاخیر
-      addToCart({ id, name, price, image, quantity: 1 });
-    } catch (error) {
-      console.error('خطا در افزودن به سبد خرید:', error);
-    }
-  };
 
   return (
     <div className="product-card bg-stone-800   rounded-lg shadow-md overflow-hidden">
@@ -58,13 +44,7 @@ export default function ProductCard({ name, price, image, quantity, id }: Produc
           <span className="text-gray-400 line-through hidden lg:block pr-3">250,000 تومان</span>
           <span className="font-bold text-gray-300">{price} تومان</span>
         </div>
-        <button
-          // onClick={() => addToCart({ id, name, price, image, quantity: 1 })}
-          onClick={handleAddToCart}
-          className="w-full bg-gradient-to-l from-yellow-400 to-yellow-400 text-stone-800 text-sm lg:text-lg font-bold py-2 rounded-lg hover:bg-yellow-500 transition">
-          افزودن به سبد خرید
-
-        </button>
+      <AddItem name={name} price={price} quantity={quantity} id={id} image={image}  />
       </div>
     </div>
   );

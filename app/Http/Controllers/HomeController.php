@@ -13,13 +13,15 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::select('id', 'name', 'price','quantity')->paginate(10);
+        $thshirts = Product::where('category_id', 2)->paginate(12);
 
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'products' => $products
+            'products' => $products,
+            'thshirts' => $thshirts,
         ]);
     }
   
