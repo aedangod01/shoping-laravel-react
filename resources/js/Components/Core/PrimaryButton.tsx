@@ -10,7 +10,14 @@ export default function PrimaryButton({
         <button
             {...props}
             className={
-                `inline-flex items-center rounded-md border border-transparent  bg-yellow-400 px-6 py-4 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:bg-yellow-400 dark:text-gray-900  dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300 ${
+                `inline-flex items-center rounded-2xl border border-transparent 
+                 bg-yellow-400 px-12 py-4 text-lg font-semibold uppercase 
+                 tracking-widest text-white transition duration-150 ease-in-out
+                  hover:bg-gray-700 focus:bg-gray-700  focus:outline-none focus:ring-2
+                   focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900
+                    dark:bg-yellow-400 dark:text-gray-900  dark:hover:bg-white
+                     dark:focus:bg-white dark:focus:ring-offset-gray-800
+                      dark:active:bg-gray-300 ${
                     disabled && 'opacity-25'
                 } ` + className
             }

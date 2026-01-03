@@ -9,10 +9,15 @@ class CartItem extends Model
  protected $fillable = [
         'product_id',
         'unit_price',
-        'quantity'
+        'quantity',
+        'cart_id'
     ];
 
 protected $appends = ['total'];
+public function cart()
+{
+    return $this->belongsTo(Cart::class);
+}
 
     public function getTotalAttribute()
     {

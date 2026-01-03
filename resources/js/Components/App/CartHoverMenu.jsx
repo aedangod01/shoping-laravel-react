@@ -18,7 +18,7 @@ export default function CartHoverMenu() {
         timeoutRef.current = setTimeout(() => setOpen(false), delay);
     };
     return (
-        <div className="hidden md:block">
+        <div className=" md:block">
 
             <div ref={menuRef}>
                 <NavLink

@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -64,19 +65,22 @@ Route::middleware('auth')->group(function () {
     // Route::post('admin/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::delete('admin/order/delete/{id}',  [OrderController::class, 'destroy'])->name('order.destroy');
     Route::get('admin/order/edit/{id}',  [OrderController::class, 'edit'])->name('order.edit');
-    Route::post('admin/order/edit/{order}',  [OrderController::class, 'update'])->name('order.update');
+    Route::post('admin/order/edit/{payment}',  [OrderController::class, 'update'])->name('order.update');
 
 
     Route::get('checkout/cart', [CartController::class, 'index'])->name('checkout/cart');
     Route::post('cart/add', [CartController::class, 'add'])->name('cart/add');
+    Route::delete('cart/delete/{id}', [CartController::class, 'destroy'])->name('cart.delete');
 
     Route::get('admin/message', [ContactusController::class, 'message'])->name('message');
     Route::delete('admin/message/{id}',  [ContactusController::class, 'destroy'])->name('message.destroy');
 
 
-    Route::get('user-profile' , [UserController::class , 'profile'])->name('user-profile');
+    Route::get('user-profile', [UserController::class, 'profile'])->name('user-profile');
 
-    
+
+    Route::get('/pay', [PaymentController::class, 'index'])->name('payment');
+    Route::post('/pay', [PaymentController::class, 'store'])->name('payments.store');
 });
 
 Route::get('/about-us', function () {
@@ -84,8 +88,11 @@ Route::get('/about-us', function () {
 })->name('about-us');
 Route::get('contact-us', [ContactusController::class, 'index'])->name('contact-us');
 Route::post('contact-us', [ContactusController::class, 'store'])->name('contactUs.store');
-Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
+Route::get('products', [ProductController::class, 'all'])->name('product.all');
+// Route::get('/products/filter', [ProductController::class, 'filter'])->name('products.filter');
+Route::get('product/filter', [ProductController::class, 'filter'])->name('product.filter');
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 
 // Route::get('/' , action: [HomeController::class, 'index'])->name('home');

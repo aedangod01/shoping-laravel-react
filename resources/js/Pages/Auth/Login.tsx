@@ -97,29 +97,34 @@ export default function Login({
                     </label>
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
+                <div className="mt-4 flex items-center justify-center gap-8 py-2">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
                             className="dark:text-white"
                         >
-                            رمز عبور را فراموش کرده اید
+                           ? رمز عبور را فراموش کرده اید
                         </Link>
                     )}
-                  
-
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        ورود
-                    </PrimaryButton>
-                </div>
-            {/* TODO: استایل دکمه ورود را بعداً بهبود بده */}
-                  <NavLink 
+                    <NavLink
+                       
                         href={route('register')}
                         active={route().current('register')}
                     >
                         حساب کاربری ندارید؟
                     </NavLink>
+
+
+
+                </div>
+                {/* TODO: استایل دکمه ورود را بعداً بهبود بده */}
+
+                <div className='flex items-center justify-center py-2   m-4'>
+                    <PrimaryButton className="ms-4" disabled={processing}>
+                        ورود
+                    </PrimaryButton>
+                </div>
+
             </form>
         </GuestLayout>
     );

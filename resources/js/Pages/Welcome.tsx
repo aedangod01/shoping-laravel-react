@@ -10,6 +10,7 @@ import ProductSlider from '@/Components/App/ProductSlider';
 import { useState } from 'react';
 import { CartProvider } from '@/Context/CartContext';
 import Footer from './Layouts/Footer';
+import CartHoverMenu from '@/Components/App/CartHoverMenu';
 
 type Product = {
     id: number;

@@ -15,10 +15,49 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('images')->get();
+
         return Inertia::render('Admin/Product/Allproduct', [
             'products' => $products
         ]);
     }
+    public function all()
+    {
+        $products = Product::with('images')->paginate(12);
+        $categories = Category::all();
+        $brands = Product::select('brand')->distinct()->pluck('brand');
+
+        return Inertia::render('Products', [
+            'products' => $products,
+            'categories' => $categories,
+            'brands' => $brands
+
+        ]);
+    }
+public function filter(Request $request)
+{
+    $query = Product::with('images');
+
+    if ($request->filled('category_id')) {
+        $query->where('category_id', $request->category_id);
+    }
+
+    if ($request->filled('brand')) {
+        $query->where('brand', $request->brand);
+    }
+
+    $products = $query->paginate(12)->withQueryString();
+
+    $categories = Category::all();
+    $brands = Product::select('brand')->distinct()->pluck('brand');
+
+    return Inertia::render('Products', [
+        'products' => $products,
+        'categories' => $categories,
+        'brands' => $brands,
+        'filters' => $request->only(['category_id', 'brand']),
+    ]);
+}
+
     public function create()
     {
         $categories = Category::all();

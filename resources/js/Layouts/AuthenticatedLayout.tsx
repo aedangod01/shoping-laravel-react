@@ -48,12 +48,7 @@ export default function Authenticated({
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link
-                                            href={route('profile.edit')}
-                                        >
-                                            پروفایل کاربری شما
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
+                                            <Dropdown.Link
                                             href={route('home')}
                                             method="get"
                                             as="button"
@@ -65,6 +60,12 @@ export default function Authenticated({
                                                 </svg>
                                             </div>
                                         </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href={route('profile.edit')}
+                                        >
+                                            پروفایل کاربری شما
+                                        </Dropdown.Link>
+                                    
                                         <Dropdown.Link
                                             href={route('logout')}
                                             method="post"
@@ -123,6 +124,14 @@ export default function Authenticated({
                                     active={route().current('message')}
                                 >
                                     پیغام ها
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 p-5 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('order')}
+                                    active={route().current('order')}
+                                >
+                                 سفارش ها
                                 </NavLink>
                             </div>
                         </div>

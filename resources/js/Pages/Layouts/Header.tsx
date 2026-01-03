@@ -16,11 +16,11 @@ export default function Header() {
                             <a href="#" className="text-white hover:text-primary transition">خانه</a>
                             {/* <a href="#" className="text-whitehover:text-primary transition">محصولات</a> */}
                             <a href="#" className="text-whitehover:text-primary transition"> <NavLink
-                                href={route('about-us')}
-                                active={route().current('about-us')}
+                                href={route('product.all')}
+                                active={route().current('product.all')}
                             >
-                         محصولات 
-                                </NavLink>
+                                محصولات
+                            </NavLink>
                             </a>
                             {/* <a href="#" className="text-whitehover:text-primary transition">محصولات</a> */}
                             <a href="#" className="text-whitehover:text-primary transition"> <NavLink
@@ -28,9 +28,15 @@ export default function Header() {
                                 active={route().current('about-us')}
                             >
                                 درباره ما
-                                </NavLink>
+                            </NavLink>
                             </a>
-                            <a href="#" className="text-white hover:text-primary transition">تماس با ما</a>
+                            <a href="#" className="text-white hover:text-primary transition">
+                                <NavLink
+                                    href={route('contact-us')}
+                                    active={route().current('contact-us')}
+                                >
+                                    تماس با ما                                </NavLink>
+                            </a>
                         </nav>
                     </div>
 
